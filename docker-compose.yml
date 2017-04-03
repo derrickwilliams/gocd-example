@@ -9,8 +9,7 @@ services:
       - ${PWD}/server/_data:/godata
 
   gocdagentnodejs:
-    image: derrickwilliams/gocd-agent-node-7.8:v17.3.0
-    user: go
+    image: derrickwilliams/gocd-node-js-7.8-user-fix
     links:
       - gocdserver
     env_file: .env
