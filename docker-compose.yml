@@ -1,0 +1,18 @@
+version: '2'
+services:
+  gocdserver:
+    build: server
+    hostname: gocd-server
+    ports:
+      - '8153:8153'
+    volumes:
+      - ${PWD}/server/_data:/godata
+
+  gocdagentnodejs:
+    image: derrickwilliams/gocd-agent-node-7.8:v17.3.0
+    user: go
+    links:
+      - gocdserver
+    env_file: .env
+    volumes:
+      - ${PWD}/agent/_data:/godata
